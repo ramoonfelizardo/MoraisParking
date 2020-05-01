@@ -1,13 +1,19 @@
 package model;
 
 public class Proprietario {
-
+	
+	
 	private String nome;
 	private String curso;
 	private int matricula;
 	private boolean especial;
 	private Veiculo veiculo;
 
+	
+	public Proprietario() {
+		
+	}
+	
 	public Proprietario(String nome, String curso, int matricula, boolean especial) {
 		this.nome = nome;
 		this.curso = curso;
@@ -39,7 +45,7 @@ public class Proprietario {
 		this.matricula = matricula;
 	}
 
-	public boolean isEspecial() {
+	public boolean getEspecial() {
 		return especial;
 	}
 
