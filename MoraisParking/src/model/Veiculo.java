@@ -2,22 +2,14 @@ package model;
 
 public class Veiculo {
 	
-	private String placa, tipoDeVeiculo;
+	private String placa;
+	private String tipoDeVeiculo;
 	private Proprietario proprietario;
-	
 	
 	public Veiculo(String placa, String tipoDeVeiculo, Proprietario proprietario) {
 		this.placa = placa;
 		this.tipoDeVeiculo = tipoDeVeiculo;
-		this.proprietario = proprietario;
-	}
-	
-	public Proprietario getProprietario() {
-		return proprietario;
-	}
-
-	public void setProprietario(Proprietario proprietario) {
-		this.proprietario = proprietario;
+		
 	}
 
 	public String getPlaca() {
@@ -37,8 +29,18 @@ public class Veiculo {
 	}
 	
 
-	public String toString() {
-		return "Placa: " + placa + "\nTipo do veículo: " + tipoDeVeiculo + 
-				"Proprietário: " + proprietario;
+	public Proprietario getProprietario() {
+		return proprietario;
 	}
+
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
+	}
+
+	@Override
+	public String toString() {
+		return "Veiculo [placa=" + placa + ", tipoDeVeiculo=" + tipoDeVeiculo + "]";
+	}
+	
+
 }

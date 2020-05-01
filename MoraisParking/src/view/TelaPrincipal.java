@@ -51,6 +51,7 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemCadVeic = new JMenuItem("Ve\u00EDculo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new CadastrarProp().visible();
 				
 			}
 		});
