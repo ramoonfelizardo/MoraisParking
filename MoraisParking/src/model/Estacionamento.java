@@ -21,7 +21,7 @@ public class Estacionamento {
 		this.proprietario = p;
 	}
 	
-	//Quando hover um evento passar a váriavel "evento" para true, assim a zona de evento esta bloqueada.
+	//Quando houver um evento passar a vï¿½riavel "evento" para true, assim a zona de evento esta bloqueada.
 	
 	public void locada(boolean tipoVaga) {
 		
