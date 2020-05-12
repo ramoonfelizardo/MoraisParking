@@ -12,9 +12,13 @@ import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import view.FrameLogin;
 
 public class TelaPrincipal extends JFrame {
+	
+	protected String login, senha;
 
 	/**
 	 * Launch the application.
@@ -51,8 +55,12 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemCadVeic = new JMenuItem("Ve\u00EDculo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new InterfaceProprietario().visible();
-				
+				if (login.equals("adminF") && senha.equals("adminF")) {
+					new InterfaceProprietario().visible();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
 			}
 		});
 		mnNew.add(mnItemCadVeic);
