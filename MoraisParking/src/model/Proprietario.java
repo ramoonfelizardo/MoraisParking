@@ -7,7 +7,6 @@ public class Proprietario {
 	private String curso;
 	private int matricula;
 	private boolean especial;
-	private Veiculo veiculo;
 
 	
 	public Proprietario() {
@@ -52,16 +51,17 @@ public class Proprietario {
 	public void setEspecial(boolean especial) {
 		this.especial = especial;
 	}
-
-	public Veiculo getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(Veiculo veiculo) {
-		this.veiculo = veiculo;
+	
+	public Proprietario atualizarProprietario(Proprietario proprietario) {
+		this.curso = proprietario.getCurso();
+		this.matricula = proprietario.getMatricula();
+		this.nome = proprietario.getNome();
+		this.especial = proprietario.getEspecial();
+		
+		return this;
 	}
 
 	public String toString() {
-		return "Nome: " + nome + "\nCurso: " + curso + "\nMatricula: " + matricula + "\nEspecial: " + especial + "\n" + veiculo.toString();
+		return "Nome: " + nome + "\nCurso: " + curso + "\nMatricula: " + matricula + "\nEspecial: " + especial;
 	}
 }

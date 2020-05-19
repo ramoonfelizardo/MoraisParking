@@ -3,11 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +13,7 @@ import javax.swing.JTextField;
 
 import model.Proprietario;
 import model.Veiculo;
+import persistencia.BD;
 
 public class InterfaceProprietario {
 
@@ -26,7 +22,6 @@ public class InterfaceProprietario {
 	private JTextField textField_1Curso;
 	private JTextField textField_2Matricula;
 	private JTextField textField_3Placa;
-	private ArrayList<Proprietario> list = new ArrayList<Proprietario>();
 
 	/**
 	 * Launch the application.
@@ -60,7 +55,7 @@ public class InterfaceProprietario {
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 476);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JLabel labelTitulo = new JLabel("Informe os dados para realizar o cadastro");
@@ -200,20 +195,17 @@ public class InterfaceProprietario {
 				}
 
 				Veiculo veiculo = new Veiculo(placa, tipoDeVeiculo, pro);
-				pro.setVeiculo(veiculo);
 				
-				list.add(pro); // Lista de Usuarios e veiculos
+				BD.getInstance().salvarProprietario(pro); // Lista de Usuarios
+				BD.getInstance().salvarVeiculo(veiculo);
+				
 
-				Integer escolha = JOptionPane.showConfirmDialog(null, "Cadastrado com sucesso!! Deseja cadastrar +1?",
-						"Comfirm", JOptionPane.YES_NO_OPTION);
+				int escolha = JOptionPane.showConfirmDialog(null, "Cadastrado com sucesso!! Deseja cadastrar +1?",
+						"Confirm", JOptionPane.YES_NO_OPTION);
 
 				if (escolha != 0) {
 
 					frame.dispose();
-
-					InterfaceEstacionar ie = new InterfaceEstacionar();
-					ie.setP(list);
-					ie.setVisible(true);
 					
 				}
 
@@ -228,23 +220,9 @@ public class InterfaceProprietario {
 				rdbtnNewRadioButton_1NAO.setSelected(false);
 				rdbtnNewRadioButton_2CARRO.setSelected(false);
 				rdbtnNewRadioButton_3MOTO.setSelected(false);
-
-
-
-				/*
-				 * Proprietario p1 = list.get(0);
-				 * 
-				 * p1.getVeiculo().getPlaca(); //Pegando um placa
-				 */
 			}
 		});
 		btnNewButtonCadastrar.setBounds(164, 381, 119, 23);
 		frame.getContentPane().add(btnNewButtonCadastrar);
-	}
-
-	public ArrayList<Proprietario> getLista() {
-
-		return list;
-
-	}
+	}	
 }
