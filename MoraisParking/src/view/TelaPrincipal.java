@@ -14,11 +14,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import model.Funcionario;
+import model.FuncionarioCredenciado;
+import persistencia.BDCredencial;
 import view.FrameLogin;
 
 public class TelaPrincipal extends JFrame {
 	
-	protected String login, senha;
+	protected String loginDigitado, senhaDigitada;
 
 	/**
 	 * Launch the application.
@@ -55,7 +59,7 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemCadVeic = new JMenuItem("Ve\u00EDculo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (login.equals("adminF") && senha.equals("adminF")) {
+				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
 					new InterfaceProprietario().visible();
 				}
 				else {
@@ -75,6 +79,16 @@ public class TelaPrincipal extends JFrame {
 		mnNew.add(mnItemCadArEsp);
 		
 		JMenuItem mnItemRemVeic = new JMenuItem("Remover Ve\u00EDculo");
+		mnItemRemVeic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
+					new RemoverVeiculo().setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
+			}
+		});
 		mnEstac.add(mnItemRemVeic);
 		
 		JMenuItem mnItemPermissoes = new JMenuItem("Permiss\u00F5es");

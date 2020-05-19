@@ -1,12 +1,9 @@
 package model;
 
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class Estacionamento {
 	
-	private ArrayList <Proprietario> proprietario;
 	private Integer total = 1500;
 	private Integer qtdVagas = 700;
 	private Integer qtdZonaEvento = 500;
@@ -14,16 +11,11 @@ public class Estacionamento {
 	private boolean evento;
 
 	public Estacionamento() {
-		
-	}
-	
-	public Estacionamento(ArrayList<Proprietario> p) {
-		this.proprietario = p;
 	}
 	
 	//Quando houver um evento passar a v�riavel "evento" para true, assim a zona de evento esta bloqueada.
 	
-	public void locada(boolean tipoVaga) {
+	public void locarVaga(boolean tipoVaga) {
 		
 		if(tipoVaga) {
 			qtdVagasEspeciais --;
@@ -34,10 +26,7 @@ public class Estacionamento {
 			}if(qtdVagas == 0 && evento == true) {
 				JOptionPane.showMessageDialog(null, "zona bloqueada para evento!");
 			}
-			
-			
 		}
-
 	}
 	
 	public void addVagaEspecial(int qtdNovaVaga) {
@@ -46,13 +35,7 @@ public class Estacionamento {
 		qtdVagas = qtdVagas - qtdNovaVaga;
 		
 	}
-	
-	public ArrayList<Proprietario> getProprietario() {
-		return proprietario;
-	}
-	public void setProprietario(ArrayList<Proprietario> proprietario) {
-		this.proprietario = proprietario;
-	}
+
 	public Integer getQtdVagas() {
 		return qtdVagas;
 	}

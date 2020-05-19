@@ -20,6 +20,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import model.FuncionarioCredenciado;
+import persistencia.BD;
+import persistencia.BDCredencial;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -51,6 +55,7 @@ public class FrameLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameLogin() {
+		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
@@ -128,42 +133,23 @@ public class FrameLogin extends JFrame {
 		LoginPanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(txtUsername.getText().equals("adminF") && txtPassword.getText().equals("adminF")) {
+				if(BDCredencial.getInstance().verificacaoGeral(txtUsername.getText(), txtPassword.getText())) {
 					// caso o login for correto
 					lblLoginMessage.setText("");
 					JOptionPane.showMessageDialog(null, "Logado!");
 					FrameLogin.this.dispose();
 					TelaPrincipal tela = new TelaPrincipal();
 					tela.setVisible(true);
-					tela.login = "adminF";
-					tela.senha = "adminF";
+					tela.loginDigitado = txtUsername.getText();
+					tela.senhaDigitada = txtPassword.getText();
 					
-				}
-				else if(txtUsername.getText().equals("adminRH") && txtPassword.getText().equals("admiRH")) {
-					// caso o login for correto
-					lblLoginMessage.setText("");
-					JOptionPane.showMessageDialog(null, "Logado!");
-					FrameLogin.this.dispose();
-					TelaPrincipal tela = new TelaPrincipal();
-					tela.setVisible(true);
-					tela.login = "adminRH";
-					tela.senha = "adminRH";
-				}
-				else if(txtUsername.getText().equals("adminG") && txtPassword.getText().equals("adminG")) {
-					// caso o login for correto
-					lblLoginMessage.setText("");
-					JOptionPane.showMessageDialog(null, "Logado!");
-					FrameLogin.this.dispose();
-					TelaPrincipal tela = new TelaPrincipal();
-					tela.setVisible(true);
-					tela.login = "adminGE";
-					tela.senha = "adminGE";
 				}
 				
 				else if(txtUsername.getText().equals("") ||  txtUsername.getText().equals("Username") || txtPassword.getText().equals("") || txtPassword.getText().equals("Password") ){
 					lblLoginMessage.setText("Por favor, digite todas as credenciais!");
 					
 				}
+				
 				else {
 					lblLoginMessage.setText("Usuário e senha incorreto!");
 				}
