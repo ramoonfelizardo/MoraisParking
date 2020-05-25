@@ -15,7 +15,7 @@ import model.Proprietario;
 import model.Veiculo;
 import persistencia.BD;
 
-public class InterfaceProprietario {
+public class CadastrarProprietario {
 
 	private JFrame frame;
 	private JTextField textFieldNome;
@@ -30,7 +30,7 @@ public class InterfaceProprietario {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceProprietario window = new InterfaceProprietario();
+					CadastrarProprietario window = new CadastrarProprietario();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class InterfaceProprietario {
 	/**
 	 * Create the application.
 	 */
-	public InterfaceProprietario() {
+	public CadastrarProprietario() {
 		initialize();
 	}
 	public void visible() {
@@ -81,7 +81,7 @@ public class InterfaceProprietario {
 		textField_1Curso.setColumns(10);
 
 		JLabel lblNewLabel_3Matricula = new JLabel("Matr\u00EDcula");
-		lblNewLabel_3Matricula.setBounds(10, 166, 46, 14);
+		lblNewLabel_3Matricula.setBounds(10, 166, 62, 14);
 		frame.getContentPane().add(lblNewLabel_3Matricula);
 
 		textField_2Matricula = new JTextField();
@@ -196,20 +196,12 @@ public class InterfaceProprietario {
 
 				Veiculo veiculo = new Veiculo(placa, tipoDeVeiculo, pro);
 				
-				BD.getInstance().salvarProprietario(pro); // Lista de Usuarios
+				BD.getInstance().salvarProprietario(pro);
 				BD.getInstance().salvarVeiculo(veiculo);
 				
+				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
+				frame.dispose();
 
-				int escolha = JOptionPane.showConfirmDialog(null, "Cadastrado com sucesso!! Deseja cadastrar +1?",
-						"Confirm", JOptionPane.YES_NO_OPTION);
-
-				if (escolha != 0) {
-
-					frame.dispose();
-					
-				}
-
-				System.out.println(escolha);
 
 				textFieldNome.setText("");
 				textField_1Curso.setText("");

@@ -19,6 +19,7 @@ import model.Funcionario;
 import model.FuncionarioCredenciado;
 import persistencia.BDCredencial;
 import view.FrameLogin;
+import javax.swing.JButton;
 
 public class TelaPrincipal extends JFrame {
 	
@@ -60,7 +61,7 @@ public class TelaPrincipal extends JFrame {
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
-					new InterfaceProprietario().visible();
+					new CadastrarProprietario().visible();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -70,9 +71,32 @@ public class TelaPrincipal extends JFrame {
 		mnNew.add(mnItemCadVeic);
 		
 		JMenuItem mnItemCadEven = new JMenuItem("Evento");
+		 mnItemCadEven.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
+					new CadastrarEvento().setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
+			}
+		});
+		
 		mnNew.add(mnItemCadEven);
 		
 		JMenuItem mnItemCadOc = new JMenuItem("Ocorr\u00EAncia");
+		mnItemCadOc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) 
+				{new CadastrarOcorrencia().setVisible(true);
+					}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
+			}
+		});
+		
 		mnNew.add(mnItemCadOc);
 		
 		JMenuItem mnItemCadArEsp = new JMenuItem("\u00C1rea Especial");
@@ -104,6 +128,17 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcion\u00E1rio");
+		mnItemCadFunc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
+					new CadastrarFuncionario().setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
+			}
+		});
 		mnNewMenu_1.add(mnItemCadFunc);
 		
 		JMenu mnRelatorio = new JMenu("Relat\u00F3rio");
@@ -128,5 +163,14 @@ public class TelaPrincipal extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 492, 275);
 		layeredPane.add(panel_1);
+		
+		JButton btnEstacionar = new JButton("Estacionar");
+		btnEstacionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new InterfaceEstacionar().setVisible(true);
+			}
+		});
+		btnEstacionar.setBounds(498, 12, 104, 23);
+		layeredPane.add(btnEstacionar);
 	}
 }

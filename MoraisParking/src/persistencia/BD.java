@@ -44,7 +44,7 @@ public class BD {
 		return false;
 	}
 	
-	private Proprietario buscarProprietario(int matricula) {
+	public Proprietario buscarProprietario(int matricula) {
 		for (Proprietario proprietario : proprietarios) {
 			if (proprietario.getMatricula() == matricula) {
 				return proprietario;
@@ -81,10 +81,5 @@ public class BD {
 		}
 		
 		return null;
-		
-		/*return this.veiculos.stream()
-				.filter(v -> v.getPlaca().equals(placa))
-				.findFirst().orElse(null);
-				*/
 	}
 }

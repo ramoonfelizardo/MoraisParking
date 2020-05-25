@@ -7,18 +7,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import model.Estacionamento;
 import model.Veiculo;
 import persistencia.BD;
+import persistencia.BDEstacionamento;
 
 public class InterfaceEstacionar extends JFrame  {
 	
 	private Veiculo veiculo;
-	private	Estacionamento estacionamento = new Estacionamento();
 	private JPanel contentPane;
 	private JTextField txtPlaca;
 
@@ -64,13 +64,25 @@ public class InterfaceEstacionar extends JFrame  {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String placa = txtPlaca.getText();
+				
 				veiculo = BD.getInstance().buscarVeiculoPorPlaca(placa);
 				
-				estacionamento.locarVaga(veiculo.getProprietario().getEspecial());
-				
+				if (veiculo == null) {
+					if(JOptionPane.showConfirmDialog(null, "Veículo não cadastrado, Você já tem cadastro?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
+						CadastrarProprietario cadastrarProp = new CadastrarProprietario();
+						cadastrarProp.visible();
+					}
+					else {
+						new CadastrarVeiculo().setVisible(true);
+						InterfaceEstacionar.this.dispose();
+					}
+				}
+				else {
+					BDEstacionamento.getInstance().locarVaga(veiculo.getProprietario().getEspecial());
+					JOptionPane.showMessageDialog(null, "Acesso autorizado!");
+					InterfaceEstacionar.this.dispose();
+				}
 			}
-				
-		
 		});
 		btnEstacionar.setBounds(151, 166, 112, 23);
 		contentPane.add(btnEstacionar);

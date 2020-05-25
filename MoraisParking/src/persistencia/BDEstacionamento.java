@@ -1,16 +1,27 @@
-package model;
+package persistencia;
 
 import javax.swing.JOptionPane;
 
-public class Estacionamento {
+public class BDEstacionamento {
 	
 	private Integer total = 1500;
 	private Integer qtdVagas = 700;
 	private Integer qtdZonaEvento = 500;
 	private Integer qtdVagasEspeciais = 300;
 	private boolean evento;
+	private static BDEstacionamento INSTANCE;
+	
+	private BDEstacionamento() {
 
-	public Estacionamento() {
+	}
+	
+	public static BDEstacionamento getInstance() {
+		
+		if(INSTANCE == null) {
+			INSTANCE = new BDEstacionamento();
+		}
+		
+		return INSTANCE;
 	}
 	
 	//Quando houver um evento passar a v�riavel "evento" para true, assim a zona de evento esta bloqueada.
@@ -19,11 +30,16 @@ public class Estacionamento {
 		
 		if(tipoVaga) {
 			qtdVagasEspeciais --;
-		}else {
+		}
+		
+		else {
 			qtdVagas --;
+			
 			if(qtdVagas == 0 && evento == false) {
 				qtdZonaEvento --;
-			}if(qtdVagas == 0 && evento == true) {
+			}
+			
+			else if(qtdVagas == 0 && evento == true) {
 				JOptionPane.showMessageDialog(null, "zona bloqueada para evento!");
 			}
 		}
@@ -72,7 +88,4 @@ public class Estacionamento {
 	public void setEvento(boolean evento) {
 		this.evento = evento;
 	}
-	
-	
-	
 }
