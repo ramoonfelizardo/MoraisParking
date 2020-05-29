@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,10 +40,18 @@ public class InterfaceEstacionar extends JFrame  {
 		});
 	}
 
+	// ------- verifica se digitou uma placa certa no modelo real
 	
-	/**
-	 * Create the frame.
-	 */
+	public static boolean validaPlaca(String placa){
+		   if(placa.length() != 7){
+		      return false;
+		   }
+		   if(!placa.substring(0, 3).matches("[A-Z]*")){
+		      return false;
+		   }
+		   return placa.substring(3).matches("[0-9]*");
+	}
+	
 	public InterfaceEstacionar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -63,7 +73,25 @@ public class InterfaceEstacionar extends JFrame  {
 		btnEstacionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String placa = txtPlaca.getText();
+				String placa;
+				
+				// ----- tira tudo o que não for letra ou número
+				
+				txtPlaca.setText(txtPlaca.getText().replaceAll("[^a-zA-Z0-9]", ""));
+				
+				// ------- verifica se digitou uma placa certa no modelo real
+				
+				if(validaPlaca(txtPlaca.getText())){
+					placa = txtPlaca.getText();
+				}
+				else if (txtPlaca.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
+					return;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Você digitou uma placa inválida");
+					return;
+				}
 				
 				veiculo = BD.getInstance().buscarVeiculoPorPlaca(placa);
 				
@@ -74,13 +102,22 @@ public class InterfaceEstacionar extends JFrame  {
 					}
 					else {
 						new CadastrarVeiculo().setVisible(true);
-						InterfaceEstacionar.this.dispose();
 					}
 				}
 				else {
-					BDEstacionamento.getInstance().locarVaga(veiculo.getProprietario().getEspecial());
-					JOptionPane.showMessageDialog(null, "Acesso autorizado!");
-					InterfaceEstacionar.this.dispose();
+					try {
+						if (BDEstacionamento.getInstance().locarVaga(veiculo.getProprietario().getEspecial(), veiculo)) {
+							JOptionPane.showMessageDialog(null, "Acesso autorizado!");
+							InterfaceEstacionar.this.dispose();
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Nos desculpe o transtorno, mas não temos mais vagas");
+						}
+					}
+					catch (HeadlessException | ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		});

@@ -34,9 +34,9 @@ public class BD {
 		return proprietario;
 	}
 	
-	public boolean excluirProprietario(int matricula) {
+	public boolean excluirProprietario(String matricula) {
 		for (Proprietario proprietario : proprietarios) {
-			if (proprietario.getMatricula() == matricula) {
+			if (proprietario.getMatricula().equals(matricula)) {
 				this.proprietarios.remove(proprietario);
 				return true;
 			}
@@ -44,13 +44,21 @@ public class BD {
 		return false;
 	}
 	
-	public Proprietario buscarProprietario(int matricula) {
+	public Proprietario buscarProprietario(String matricula) {
 		for (Proprietario proprietario : proprietarios) {
-			if (proprietario.getMatricula() == matricula) {
+			if (proprietario.getMatricula().equals(matricula)) {
 				return proprietario;
 			}
 		}
-		
+		return null;
+	}
+	
+	public Proprietario buscarProprietarioPeloNome(String nome) {
+		for (Proprietario proprietario : proprietarios) {
+			if (proprietario.getNome().equals(nome)) {
+				return proprietario;
+			}
+		}
 		return null;
 	}
 	
@@ -79,7 +87,6 @@ public class BD {
 				return veiculo;
 			}
 		}
-		
 		return null;
 	}
 }

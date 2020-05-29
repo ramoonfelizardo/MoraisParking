@@ -151,7 +151,7 @@ public class FrameLogin extends JFrame {
 				}
 				
 				else {
-					lblLoginMessage.setText("Usuário e senha incorreto!");
+					lblLoginMessage.setText("UsuÃ¡rio e senha incorreto!");
 				}
 			}
 			@Override
@@ -186,7 +186,7 @@ public class FrameLogin extends JFrame {
 		lblX.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "ConfirmaÃ§Ã£o", JOptionPane.YES_NO_OPTION) == 0) {
+			if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "ConfirmaÃƒÂ§ÃƒÂ£o", JOptionPane.YES_NO_OPTION) == 0) {
 				FrameLogin.this.dispose();
 			
 			 }
