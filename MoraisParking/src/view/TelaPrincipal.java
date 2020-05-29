@@ -25,13 +25,15 @@ public class TelaPrincipal extends JFrame {
 	
 	protected String loginDigitado, senhaDigitada;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					TelaPrincipal frame = new TelaPrincipal();
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,6 +41,9 @@ public class TelaPrincipal extends JFrame {
 		});
 	}
 
+	/**
+	 * Create the frame.
+	 */
 	public TelaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 622, 370);
@@ -52,24 +57,11 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNew = new JMenu("Cadastrar");
 		mnEstac.add(mnNew);
 		
-		JMenuItem mnItemCadUsuario = new JMenuItem("Usuário");
-		mnItemCadUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
-					new CadastrarProprietario().visible();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Acesso Negado");
-				}
-			}
-		});
-		mnNew.add(mnItemCadUsuario);
-		
-		JMenuItem mnItemCadVeic = new JMenuItem("Veículo");
+		JMenuItem mnItemCadVeic = new JMenuItem("Ve\u00EDculo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
-					new CadastrarVeiculo().setVisible(true);
+					new CadastrarProprietario().visible();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -92,11 +84,11 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadEven);
 		
-		JMenuItem mnItemCadOc = new JMenuItem("Ocorrência");
+		JMenuItem mnItemCadOc = new JMenuItem("Ocorr\u00EAncia");
 		mnItemCadOc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
-				new CadastrarOcorrencia().setVisible(true);
+				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) 
+				{new CadastrarOcorrencia().setVisible(true);
 					}
 				
 				else {
@@ -107,21 +99,10 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadOc);
 		
-		JMenuItem mnItemCadArEsp = new JMenuItem("Área Especial");
-		mnItemCadArEsp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
-					new CadastrarAreaEspecial().setVisible(true);
-						}
-					
-					else {
-						JOptionPane.showMessageDialog(null, "Acesso Negado");
-					}
-			}
-		});
+		JMenuItem mnItemCadArEsp = new JMenuItem("\u00C1rea Especial");
 		mnNew.add(mnItemCadArEsp);
 		
-		JMenuItem mnItemRemVeic = new JMenuItem("Remover Veículo");
+		JMenuItem mnItemRemVeic = new JMenuItem("Remover Ve\u00EDculo");
 		mnItemRemVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -134,17 +115,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstac.add(mnItemRemVeic);
 		
-		JMenuItem mnItemPermissoes = new JMenuItem("Permissões");
-		mnItemPermissoes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada)) {
-					new CadastrarPermissoes().setVisible(true);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Acesso Negado");
-				}
-			}
-		});
+		JMenuItem mnItemPermissoes = new JMenuItem("Permiss\u00F5es");
 		mnEstac.add(mnItemPermissoes);
 		
 		JMenu mnNewMenu = new JMenu("Monitoramento");
@@ -156,7 +127,7 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNewMenu_1 = new JMenu("Gest\u00E3o");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcionário");
+		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcion\u00E1rio");
 		mnItemCadFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

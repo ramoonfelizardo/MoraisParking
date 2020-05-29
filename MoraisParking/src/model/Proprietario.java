@@ -5,7 +5,7 @@ public class Proprietario {
 	
 	private String nome;
 	private String curso;
-	private String matricula;
+	private int matricula;
 	private boolean especial;
 
 	
@@ -13,7 +13,7 @@ public class Proprietario {
 		
 	}
 	
-	public Proprietario(String nome, String curso, String matricula, boolean especial) {
+	public Proprietario(String nome, String curso, int matricula, boolean especial) {
 		this.nome = nome;
 		this.curso = curso;
 		this.matricula = matricula;
@@ -36,11 +36,11 @@ public class Proprietario {
 		this.curso = curso;
 	}
 
-	public String getMatricula() {
+	public int getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(String matricula) {
+	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
 

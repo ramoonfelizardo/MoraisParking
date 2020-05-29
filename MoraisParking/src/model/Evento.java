@@ -1,16 +1,14 @@
 package model;
 
-import java.util.Date;
-
 public class Evento {
 	
-	private String nome;
-	private Date dataInicio, dataFinal;
+	private String nome, dataInicio, dataFinal, zona;
 
-	public Evento(String nome, Date dataInicio, Date dataFinal) {
+	public Evento(String nome, String dataInicio, String dataFinal, String zona) {
 		this.nome = nome;
 		this.dataInicio = dataInicio;
 		this.dataFinal = dataFinal;
+		this.zona = zona;
 	}
 
 	public String getNome() {
@@ -21,35 +19,33 @@ public class Evento {
 		this.nome = nome;
 	}
 
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataFinal() {
+	public String getDataFinal() {
 		return dataFinal;
 	}
 
-	public void setDataFinal(Date dataFinal) {
+	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
-	public Evento atualizarEvento(Evento evento) {
-		this.nome = evento.getNome();
-		this.dataInicio = evento.getDataInicio();
-		this.dataFinal = evento.getDataFinal();
-		return this;
+	public String getZona() {
+		return zona;
 	}
-	
+
+	public void setZona(String zona) {
+		this.zona = zona;
+	}
+
 	public String toString() {
 		return "Nome do Evento: " + nome + "\nInicio do evento: " + dataInicio + 
-				"\nData final:" + dataFinal;
+				"\nData final:" + dataFinal + "\nZona: " + zona;
 	}
 
-	
-	}
-
-
+}

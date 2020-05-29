@@ -44,21 +44,12 @@ public class CadastrarVeiculo extends JFrame {
 			}
 		});
 	}
-	
-	// ------- verifica se digitou uma placa certa no modelo real
 
-	private static boolean validaPlaca(String placa){
-		   if(placa.length() != 7){
-		      return false;
-		   }
-		   if(!placa.substring(0, 3).matches("[A-Z]*")){
-		      return false;
-		   }
-		   return placa.substring(3).matches("[0-9]*");
-	}
-	
+	/**
+	 * Create the frame.
+	 */
 	public CadastrarVeiculo() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,16 +75,22 @@ public class CadastrarVeiculo extends JFrame {
 		
 		rdbtnTipoDoVeiculoMoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (rdbtnTipoDoVeiculoMoto.isSelected()) {
+
 					rdbtnTipoDoVeiculoCarro.setSelected(false);
+
 				}
 			}
 		});
 
 		rdbtnTipoDoVeiculoCarro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (rdbtnTipoDoVeiculoCarro.isSelected()) {
+
 					rdbtnTipoDoVeiculoMoto.setSelected(false);
+
 				}
 			}
 		});
@@ -121,37 +118,9 @@ public class CadastrarVeiculo extends JFrame {
 		JButton btnCadastrarVeiculo = new JButton("Cadastrar");
 		btnCadastrarVeiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String matricula = txtMatricula.getText();
-				String placa = null;
+				int matricula = Integer.parseInt(txtMatricula.getText());
+				String placa = txtPlaca.getText();
 				String tipoDeVeiculo;
-				String mensagemErroTipoDoVeiculo = null;
-				
-				// ----- tira tudo o que não for letra ou número
-				
-				txtPlaca.setText(txtPlaca.getText().replaceAll("[^a-zA-Z0-9]", ""));
-				
-				// ------- verifica se digitou uma placa certa no modelo real
-				
-				if(validaPlaca(txtPlaca.getText())){
-					placa = txtPlaca.getText();
-				}
-				else if (txtPlaca.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
-					return;
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Você digitou uma placa inválida");
-					return;
-				}
-				
-				// ------ verifica se foi selecionado alguma caixa
-				
-				if (!rdbtnTipoDoVeiculoCarro.isSelected() && !rdbtnTipoDoVeiculoMoto.isSelected()) {
-					mensagemErroTipoDoVeiculo = "Você não marcou uma opção : Tipo do veículo";
-					JOptionPane.showMessageDialog(null, mensagemErroTipoDoVeiculo);
-					mensagemErroTipoDoVeiculo = null;
-					return;
-				}
 				
 				if (rdbtnTipoDoVeiculoCarro.isSelected()) {
 
@@ -161,32 +130,20 @@ public class CadastrarVeiculo extends JFrame {
 					tipoDeVeiculo = "Moto";
 				}
 				
-				// ------ verifica se foi digitado apenas números
-				
-				if (!matricula.substring(0).matches("[0-9]*")) {
-					JOptionPane.showMessageDialog(null, "Por favor, digite apenas números na matrícula");
-					return;
-				}
-				
 				Proprietario proprietario = BD.getInstance().buscarProprietario(matricula);
 				if (proprietario != null) {
 					Veiculo veiculoNovo = new Veiculo(placa, tipoDeVeiculo, proprietario);
 					BD.getInstance().salvarVeiculo(veiculoNovo);
-					if(JOptionPane.showConfirmDialog(null, "Veículo cadastrado, você deseja cadastrar mais algum?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
-						CadastrarVeiculo.this.dispose();
-					}
-					else {
-						txtMatricula.setText("");
-						txtPlaca.setText("");
-						rdbtnTipoDoVeiculoCarro.setSelected(false);
-						rdbtnTipoDoVeiculoMoto.setSelected(false);
-					}
+					JOptionPane.showMessageDialog(null, "Veículo Cadastrado!");
+					CadastrarVeiculo.this.dispose();
+					new InterfaceEstacionar().setVisible(true);
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Você não é cadastrado.");
 					new CadastrarProprietario().visible();
 					CadastrarVeiculo.this.dispose();
 				}
+				
 			}
 		});
 		btnCadastrarVeiculo.setBounds(170, 213, 101, 23);

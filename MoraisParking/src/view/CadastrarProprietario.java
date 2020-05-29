@@ -3,7 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 import model.Proprietario;
 import model.Veiculo;
 import persistencia.BD;
@@ -22,8 +22,10 @@ public class CadastrarProprietario {
 	private JTextField textField_1Curso;
 	private JTextField textField_2Matricula;
 	private JTextField textField_3Placa;
-	private static ArrayList<String> listaDeErros = new ArrayList<String>();
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,45 +39,18 @@ public class CadastrarProprietario {
 		});
 	}
 
-
+	/**
+	 * Create the application.
+	 */
 	public CadastrarProprietario() {
 		initialize();
 	}
-	
-	// ---- deixa o frame visível
-	
 	public void visible() {
 		frame.setVisible(true);
 	}
-	
-	// ------- verifica se digitou uma placa certa no modelo real
-	
-	private static boolean validaPlaca(String placa){
-		   if(placa.length() != 7){
-		      return false;
-		   }
-		   if(!placa.substring(0, 3).matches("[A-Z]*")){
-		      return false;
-		   }
-		   return placa.substring(3).matches("[0-9]*");
-	}
-	
-	// ------ verifica se digitou alguma coisa errada. exemplo: se colocou números onde era letras
-	
-	private static ArrayList<String> validaInformacoes(String nome, String curso, String matricula) {
-		if (!nome.substring(0).matches("[A-z]*")) {
-			listaDeErros.add(nome);
-		}
-		if (!curso.substring(0).matches("[A-z]*")) {
-			listaDeErros.add(curso);
-		}
-		if (!matricula.substring(0).matches("[0-9]*")) {
-			listaDeErros.add(matricula);
-		}
-		
-		return listaDeErros;
-	}
-	
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	private void initialize() {
 
 		frame = new JFrame();
@@ -118,17 +93,26 @@ public class CadastrarProprietario {
 		JRadioButton rdbtnNewRadioButton_1NAO = new JRadioButton("Nao");
 		rdbtnNewRadioButton_1NAO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				if (rdbtnNewRadioButton_1NAO.isSelected()) {
+
 					rdbtnNewRadioButtonSIM.setSelected(false);
+
 				}
+
 			}
 		});
 
 		rdbtnNewRadioButtonSIM.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
+
 				if (rdbtnNewRadioButtonSIM.isSelected()) {
+
 					rdbtnNewRadioButton_1NAO.setSelected(false);
+
 				}
+
 			}
 		});
 		rdbtnNewRadioButtonSIM.setBounds(100, 218, 62, 23);
@@ -141,7 +125,7 @@ public class CadastrarProprietario {
 		lblNewLabel_4AreaEspecial.setBounds(10, 222, 84, 14);
 		frame.getContentPane().add(lblNewLabel_4AreaEspecial);
 
-		JLabel lblNewLabel_5TipoVeiculo = new JLabel("Tipo do veiculo");
+		JLabel lblNewLabel_5TipoVeiculo = new JLabel("Tipo de veiculo");
 		lblNewLabel_5TipoVeiculo.setBounds(10, 270, 84, 14);
 		frame.getContentPane().add(lblNewLabel_5TipoVeiculo);
 
@@ -150,9 +134,13 @@ public class CadastrarProprietario {
 
 		rdbtnNewRadioButton_2CARRO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				if (rdbtnNewRadioButton_2CARRO.isSelected()) {
+
 					rdbtnNewRadioButton_3MOTO.setSelected(false);
+
 				}
+
 			}
 		});
 		rdbtnNewRadioButton_2CARRO.setBounds(100, 266, 59, 23);
@@ -160,12 +148,15 @@ public class CadastrarProprietario {
 
 		rdbtnNewRadioButton_3MOTO.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				if (rdbtnNewRadioButton_3MOTO.isSelected()) {
+
 					rdbtnNewRadioButton_2CARRO.setSelected(false);
+
 				}
+
 			}
 		});
-		
 		rdbtnNewRadioButton_3MOTO.setBounds(164, 266, 109, 23);
 		frame.getContentPane().add(rdbtnNewRadioButton_3MOTO);
 
@@ -181,86 +172,20 @@ public class CadastrarProprietario {
 		JButton btnNewButtonCadastrar = new JButton("Cadastrar");
 		btnNewButtonCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String curso;
-				String nome;
-				String matricula;
-				String mensagemErroEspecial = null;
-				String mensagemErroTipoDoVeiculo = null;
-				
-				// ---- verifica se faltou colocar alguma informação ou se digitou errado
-				
-				validaInformacoes(textFieldNome.getText(), textField_1Curso.getText(), textField_2Matricula.getText());
-				if (listaDeErros.isEmpty()) {
-					nome = textFieldNome.getText();
-					curso = textField_1Curso.getText();
-					matricula = textField_2Matricula.getText();
-				}
-				
-				else if (textField_1Curso.getText().isEmpty() || textField_2Matricula.getText().isEmpty() || textFieldNome.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
-					return;
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Você digitou incorretamente as seguintes informações:\n" + listaDeErros);
-					listaDeErros.clear();
-					return;
-				}
-				
-				// ------ verifica se foi selecionado alguma caixa
 
-				if (!rdbtnNewRadioButton_1NAO.isSelected() && !rdbtnNewRadioButtonSIM.isSelected()) {
-					mensagemErroEspecial = "Você não marcou uma opção : Especial";
-				}
-				
+				String nome = textFieldNome.getText();
+				String curso = textField_1Curso.getText();
+				int matricula = Integer.parseInt(textField_2Matricula.getText());
+
 				boolean especial = rdbtnNewRadioButtonSIM.isSelected();
 
-				Proprietario proprietario = new Proprietario(nome, curso, matricula, especial);
-				
-				
-				
-				
+				Proprietario pro = new Proprietario(nome, curso, matricula, especial);
 
 				// --------------------Veiculo-----------------
-				
-				String placa = null;
-				
-				textField_3Placa.setText(textField_3Placa.getText().replaceAll("[^a-zA-Z0-9]", ""));
-				
-				if(validaPlaca(textField_3Placa.getText())){
-					placa = textField_3Placa.getText();
-				}
-				else if (textField_3Placa.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
-					return;
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Você digitou uma placa inválida");
-					return;
-				}
-				
-				// ------ verifica se foi selecionado alguma caixa
 
-				if (!rdbtnNewRadioButton_2CARRO.isSelected() && !rdbtnNewRadioButton_3MOTO.isSelected()) {
-					mensagemErroTipoDoVeiculo = "Você não marcou uma opção : Tipo do veículo";
-				}
-				
-				if (mensagemErroEspecial != null || mensagemErroTipoDoVeiculo != null) {
-					if (mensagemErroEspecial != null && mensagemErroTipoDoVeiculo != null) {
-						JOptionPane.showMessageDialog(null, mensagemErroTipoDoVeiculo + "\n" + mensagemErroEspecial);
-					}
-					else if (mensagemErroEspecial == null && mensagemErroTipoDoVeiculo != null) {
-						JOptionPane.showMessageDialog(null, mensagemErroTipoDoVeiculo);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, mensagemErroEspecial);
-					}
-					
-					mensagemErroEspecial = null;
-					mensagemErroTipoDoVeiculo = null;
-					return;
-				}
-				
+				String placa = textField_3Placa.getText();
 				String tipoDeVeiculo;
+
 				if (rdbtnNewRadioButton_2CARRO.isSelected()) {
 
 					tipoDeVeiculo = "Carro";
@@ -269,9 +194,9 @@ public class CadastrarProprietario {
 					tipoDeVeiculo = "Moto";
 				}
 
-				Veiculo veiculo = new Veiculo(placa, tipoDeVeiculo, proprietario);
+				Veiculo veiculo = new Veiculo(placa, tipoDeVeiculo, pro);
 				
-				BD.getInstance().salvarProprietario(proprietario);
+				BD.getInstance().salvarProprietario(pro);
 				BD.getInstance().salvarVeiculo(veiculo);
 				
 				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
@@ -291,5 +216,5 @@ public class CadastrarProprietario {
 		});
 		btnNewButtonCadastrar.setBounds(164, 381, 119, 23);
 		frame.getContentPane().add(btnNewButtonCadastrar);
-	}
+	}	
 }
