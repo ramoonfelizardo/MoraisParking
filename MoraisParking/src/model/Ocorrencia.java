@@ -1,23 +1,25 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Ocorrencia {
 	
-	private String data, tipoOcorrencia;
+	private Date data;
+	private String tipoOcorrencia;
 	private ArrayList<Veiculo> listaVeiculos;
 	
-	public Ocorrencia(String data, String tipoOcorrencia, ArrayList<Veiculo> listaVeiculos) {
+	public Ocorrencia(Date data, String tipoOcorrencia, ArrayList<Veiculo> listaVeiculos) {
 		this.data = data;
 		this.tipoOcorrencia = tipoOcorrencia;
 		this.listaVeiculos = listaVeiculos;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
@@ -37,8 +39,16 @@ public class Ocorrencia {
 		this.listaVeiculos = listaVeiculos;
 	}
 
+	public Ocorrencia atualizarOcorrencia(Ocorrencia ocorrencia) {
+		this.data = ocorrencia.getData();
+		this.listaVeiculos = ocorrencia.getListaVeiculos();
+		this.tipoOcorrencia = ocorrencia.getTipoOcorrencia();
+		
+		return this;
+	}	
+	
 	public String toString() {
-		return "Data: " + data + "\nTipo da ocorrência: " + tipoOcorrencia +
+		return "Data: " + data + "\nTipo da ocorrï¿½ncia: " + tipoOcorrencia +
 				"\nVeiculos: " + listaVeiculos;
 	}
 }

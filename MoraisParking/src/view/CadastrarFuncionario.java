@@ -17,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
@@ -25,10 +26,8 @@ public class CadastrarFuncionario extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCargo;
+	private static ArrayList<String> listaDeErros = new ArrayList<String>();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,9 +41,19 @@ public class CadastrarFuncionario extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	// ------ verifica se digitou alguma coisa errada. exemplo: se colocou números onde era letras
+	
+	private static ArrayList<String> validaInformacoes(String nome, String cargo) {
+		if (!nome.substring(0).matches("[A-z]*")) {
+			listaDeErros.add(nome);
+		}
+		if (!cargo.substring(0).matches("[A-z]*")) {
+			listaDeErros.add(cargo);
+		}
+		
+		return listaDeErros;
+	}
+	
 	public CadastrarFuncionario() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -87,9 +96,7 @@ public class CadastrarFuncionario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (rdbtnEspecialSim.isSelected()) {
-
 					rdbtnEspecialNao.setSelected(false);
-
 				}
 			}
 		});
@@ -98,26 +105,52 @@ public class CadastrarFuncionario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (rdbtnEspecialNao.isSelected()) {
-
 					rdbtnEspecialSim.setSelected(false);
-
 				}
 			}
 		});
 		
-		rdbtnEspecialSim.setBounds(10, 186, 109, 23);
+		rdbtnEspecialSim.setBounds(10, 186, 83, 23);
 		contentPane.add(rdbtnEspecialSim);
 		
-		rdbtnEspecialNao.setBounds(148, 186, 109, 23);
+		rdbtnEspecialNao.setBounds(95, 186, 109, 23);
 		contentPane.add(rdbtnEspecialNao);
 		
 		JButton btnCadastrarFuncionario = new JButton("Cadastrar");
 		btnCadastrarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String nome = txtNome.getText();
-				String cargo = txtCargo.getText();
-				boolean especial = rdbtnEspecialSim.isSelected();
+				String nome;
+				String cargo;
+				boolean especial;
+				
+				// ---- verifica se faltou colocar alguma informação ou se digitou errado
+				
+				if (listaDeErros.isEmpty()) {
+					nome = txtNome.getText();
+					cargo = txtCargo.getText();
+				}
+				
+				else if (txtNome.getText().isEmpty() || txtCargo.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
+					return;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Você digitou incorretamente as seguintes informações:\n" + listaDeErros);
+					listaDeErros.clear();
+					return;
+				}
+				
+				
+				// ------ verifica se foi selecionado alguma caixa
+				
+				if (!rdbtnEspecialNao.isSelected() && !rdbtnEspecialSim.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Você não marcou uma opção."); ;
+					return;
+				}
+				else {
+					especial = rdbtnEspecialSim.isSelected();
+				}
 				
 				Funcionario funcionario = new Funcionario(nome, cargo);
 				//funcionario.setEspecial(especial);
@@ -126,7 +159,7 @@ public class CadastrarFuncionario extends JFrame {
 				
 				int escolha = JOptionPane.showConfirmDialog(null, "Funcionário cadastrado. Deseja cadastar mais algum funcionário?",
 						"Confirm", JOptionPane.YES_NO_OPTION);
-
+			
 				if (escolha != 0) {
 
 					CadastrarFuncionario.this.dispose();
