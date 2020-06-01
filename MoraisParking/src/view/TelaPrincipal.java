@@ -20,6 +20,10 @@ import model.FuncionarioCredenciado;
 import persistencia.BDCredencial;
 import view.FrameLogin;
 import javax.swing.JButton;
+import view.Monitorar;
+import view.FrameLogin;
+import java.awt.Font;
+
 
 public class TelaPrincipal extends JFrame {
 	
@@ -52,7 +56,7 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNew = new JMenu("Cadastrar");
 		mnEstac.add(mnNew);
 		
-		JMenuItem mnItemCadUsuario = new JMenuItem("Usu√°rio");
+		JMenuItem mnItemCadUsuario = new JMenuItem("Usu·rio");
 		mnItemCadUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -65,7 +69,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadUsuario);
 		
-		JMenuItem mnItemCadVeic = new JMenuItem("Ve√≠culo");
+		JMenuItem mnItemCadVeic = new JMenuItem("VeÌculo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -92,7 +96,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadEven);
 		
-		JMenuItem mnItemCadOc = new JMenuItem("Ocorr√™ncia");
+		JMenuItem mnItemCadOc = new JMenuItem("OcorrÍncia");
 		mnItemCadOc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -107,7 +111,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadOc);
 		
-		JMenuItem mnItemCadArEsp = new JMenuItem("√Årea Especial");
+		JMenuItem mnItemCadArEsp = new JMenuItem("¡rea Especial");
 		mnItemCadArEsp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
@@ -121,7 +125,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadArEsp);
 		
-		JMenuItem mnItemRemVeic = new JMenuItem("Remover Ve√≠culo");
+		JMenuItem mnItemRemVeic = new JMenuItem("Remover VeÌculo");
 		mnItemRemVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -134,7 +138,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstac.add(mnItemRemVeic);
 		
-		JMenuItem mnItemPermissoes = new JMenuItem("Permiss√µes");
+		JMenuItem mnItemPermissoes = new JMenuItem("Permissıes");
 		mnItemPermissoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada)) {
@@ -151,12 +155,22 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mnItemMonitorar = new JMenuItem("Monitorar");
+		mnItemMonitorar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Monitorar().setVisible(true);
+				
+			}
+		});
+		
+		
+		
+		
 		mnNewMenu.add(mnItemMonitorar);
 		
-		JMenu mnNewMenu_1 = new JMenu("Gest\u00E3o");
+		JMenu mnNewMenu_1 = new JMenu("Gest„o");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcion√°rio");
+		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcion·rio");
 		mnItemCadFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -170,10 +184,25 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNewMenu_1.add(mnItemCadFunc);
 		
-		JMenu mnRelatorio = new JMenu("Relat\u00F3rio");
+		JMenu mnRelatorio = new JMenu("RelatÛrio");
+		mnRelatorio.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				new MostrarRelatorio().setVisible(true);
+				
+			}});
+		
+		
 		menuBar.add(mnRelatorio);
 		
-		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relat\u00F3rio");
+		JMenuItem mnItemVisRel = new JMenuItem("Visualizar RelatÛrio");
+		mnItemVisRel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MostrarRelatorio().setVisible(true);
+				
+			}
+		});
+		
+		
 		mnRelatorio.add(mnItemVisRel);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
@@ -194,6 +223,7 @@ public class TelaPrincipal extends JFrame {
 		layeredPane.add(panel_1);
 		
 		JButton btnEstacionar = new JButton("Estacionar");
+		btnEstacionar.setFont(new Font("Arial", Font.BOLD, 11));
 		btnEstacionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new InterfaceEstacionar().setVisible(true);
@@ -201,5 +231,22 @@ public class TelaPrincipal extends JFrame {
 		});
 		btnEstacionar.setBounds(498, 12, 104, 23);
 		layeredPane.add(btnEstacionar);
+		
+		JButton btnSair = new JButton("LOG OFF");
+		btnSair.setFont(new Font("Arial", Font.BOLD, 11));
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Confirm", JOptionPane.YES_NO_OPTION) == 0) {
+				TelaPrincipal.this.dispose();
+				FrameLogin frame = new FrameLogin();
+				frame.setVisible(true);
+				}
+			}
+		});
+		
+	
+		
+		btnSair.setBounds(498, 275, 104, 23);
+		layeredPane.add(btnSair);
 	}
 }

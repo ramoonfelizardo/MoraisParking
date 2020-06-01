@@ -9,8 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -97,7 +101,7 @@ public class CadastrarEvento extends JFrame {
 				// ---------- se alguma informaÃ§Ã£o estiver em branco, o sistema para
 				
 				if (txtEvento.getText().isEmpty() || formattedTxtDataFim.getText().isEmpty() || formattedTxtDataInicio.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "VocÃª deixou algumas informaÃ§Ãµes em branco");
+					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
 					return;
 				}
 				
@@ -113,9 +117,18 @@ public class CadastrarEvento extends JFrame {
 				
 				Evento eventoNovo = new Evento(evento, dataInicio, dataFinal);
 				BDEvento.getInstance().salvarEvento(eventoNovo);
+				BDEvento.getInstance().escrever(eventoNovo);
 				JOptionPane.showMessageDialog(null, "Evento Cadastrado");
 				CadastrarEvento.this.dispose();
+			
+				
+			
+			
+			
 			}
+		
+		
+		
 		});
 		btnCadastroEvent.setBounds(143, 236, 147, 30);
 		contentPane.add(btnCadastroEvent);

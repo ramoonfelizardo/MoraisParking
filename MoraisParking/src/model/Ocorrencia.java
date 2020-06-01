@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Ocorrencia {
+public class Ocorrencia implements Serializable{
 	
 	private Date data;
 	private String tipoOcorrencia;

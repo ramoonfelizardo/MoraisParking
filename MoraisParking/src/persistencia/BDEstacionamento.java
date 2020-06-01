@@ -44,7 +44,7 @@ public class BDEstacionamento {
 			}
 
 			else if (locarVagaNormal() || locarVagaEvento()) {
-				JOptionPane.showMessageDialog(null, "NÃ£o temos mais vagas especiais, mas colocaremos vocÃª em uma vaga normal");
+				JOptionPane.showMessageDialog(null, "Não temos mais vagas especiais, mas colocaremos você em uma vaga normal");
 				return true;
 			}
 		}

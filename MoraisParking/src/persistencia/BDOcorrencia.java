@@ -1,10 +1,15 @@
 package persistencia;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.Veiculo;
+import javax.swing.JOptionPane;
 
+import model.Veiculo;
+import model.Evento;
 import model.Ocorrencia;
 
 public class BDOcorrencia {
@@ -26,6 +31,24 @@ public class BDOcorrencia {
 		return INSTANCE;
 	}
 
+	
+	
+	public void escrever(Ocorrencia ocorrencia){
+		try {
+			File file = new File ("RelatórioOcorrencia.txt");
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
+			output.writeObject(ocorrencia);
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+	}
+	
+	
+	
+	
+	
 	public Ocorrencia salvarOcorrencia(Ocorrencia ocorrencia) {
 		Ocorrencia oco = this.buscarOcorrencia(ocorrencia.getData());
 		 if (oco != null) {

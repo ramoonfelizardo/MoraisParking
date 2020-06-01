@@ -62,7 +62,7 @@ public class CadastrarFuncionario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Cadastro de Funcion√°rios");
+		JLabel lblTitulo = new JLabel("Cadastro de Funcion·rios");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTitulo.setBounds(140, 11, 171, 15);
 		contentPane.add(lblTitulo);
@@ -75,7 +75,7 @@ public class CadastrarFuncionario extends JFrame {
 		lblCargo.setBounds(10, 104, 83, 14);
 		contentPane.add(lblCargo);
 		
-		JLabel lblEspecial = new JLabel("Permitir acessar √°reas especiais:");
+		JLabel lblEspecial = new JLabel("Permitir acessar ¡reas especiais:");
 		lblEspecial.setBounds(10, 152, 209, 14);
 		contentPane.add(lblEspecial);
 		

@@ -1,9 +1,15 @@
 package persistencia;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EventObject;
+
+import javax.swing.JOptionPane;
 
 import model.Evento;
 import model.Veiculo;
@@ -46,6 +52,21 @@ public class BDEvento {
 		return false;
 	}
 	
+	public void escrever(Evento evento){
+		try {
+			File file = new File ("RelatórioEvento.txt");
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
+			for (Evento evento2 : eventos) {
+				output.writeObject(evento.toString());
+			}
+			
+			output.writeObject(evento.toString());
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+	}
 	
 	public Evento buscarEvento(String nome) {
 		for (Evento evento : eventos) {
