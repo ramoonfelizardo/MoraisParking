@@ -64,7 +64,7 @@ public class RemoverVeiculo extends JFrame {
 		txtPlaca.setColumns(10);
 		
 		JLabel lblPlaca = new JLabel("Digite a placa do veículo para remover:");
-		lblPlaca.setBounds(124, 92, 201, 14);
+		lblPlaca.setBounds(94, 92, 247, 14);
 		contentPane.add(lblPlaca);
 		
 		lblTitulo = new JLabel("Remossão de veículos");
