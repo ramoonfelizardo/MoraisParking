@@ -67,7 +67,6 @@ public class Monitorar extends JFrame {
 		lblNewLabelM.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabelM.setBounds(27, 21, 176, 14);
 		contentPane.add(lblNewLabelM);
-		BDEvento.getInstance().buscarEvento(getName());
 		
 		JLabel lblVaga = new JLabel("");
 		lblVaga.setOpaque(true);
@@ -146,16 +145,18 @@ public class Monitorar extends JFrame {
 			
 				Date dataDeHoje = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-				Evento evento = null;
 				try {
-					evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
+					Evento evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
+					if (evento != null) {
+						labelEvento.setText(evento.getNome());
+					}
+					else {
+						labelEvento.setText("");
+					}
 				} catch (ParseException e1) {
-				
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			
-			
-			
 			}
 		});
 		buttonEvento.setFont(new Font("Tahoma", Font.BOLD, 11));

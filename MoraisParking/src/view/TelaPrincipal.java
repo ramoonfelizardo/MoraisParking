@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -56,7 +57,7 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNew = new JMenu("Cadastrar");
 		mnEstac.add(mnNew);
 		
-		JMenuItem mnItemCadUsuario = new JMenuItem("Usuário");
+		JMenuItem mnItemCadUsuario = new JMenuItem("Usuï¿½rio");
 		mnItemCadUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -69,7 +70,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadUsuario);
 		
-		JMenuItem mnItemCadVeic = new JMenuItem("Veículo");
+		JMenuItem mnItemCadVeic = new JMenuItem("Veï¿½culo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -96,7 +97,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadEven);
 		
-		JMenuItem mnItemCadOc = new JMenuItem("Ocorrência");
+		JMenuItem mnItemCadOc = new JMenuItem("Ocorrï¿½ncia");
 		mnItemCadOc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -111,7 +112,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadOc);
 		
-		JMenuItem mnItemCadArEsp = new JMenuItem("Área Especial");
+		JMenuItem mnItemCadArEsp = new JMenuItem("ï¿½rea Especial");
 		mnItemCadArEsp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
@@ -125,7 +126,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadArEsp);
 		
-		JMenuItem mnItemRemVeic = new JMenuItem("Remover Veículo");
+		JMenuItem mnItemRemVeic = new JMenuItem("Remover Veï¿½culo");
 		mnItemRemVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -138,7 +139,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstac.add(mnItemRemVeic);
 		
-		JMenuItem mnItemPermissoes = new JMenuItem("Permissões");
+		JMenuItem mnItemPermissoes = new JMenuItem("Permissï¿½es");
 		mnItemPermissoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada)) {
@@ -157,7 +158,12 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemMonitorar = new JMenuItem("Monitorar");
 		mnItemMonitorar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Monitorar().setVisible(true);
+				try {
+					new Monitorar().setVisible(true);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -167,10 +173,10 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNewMenu.add(mnItemMonitorar);
 		
-		JMenu mnNewMenu_1 = new JMenu("Gestão");
+		JMenu mnNewMenu_1 = new JMenu("Gestï¿½o");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcionário");
+		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcionï¿½rio");
 		mnItemCadFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -184,7 +190,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNewMenu_1.add(mnItemCadFunc);
 		
-		JMenu mnRelatorio = new JMenu("Relatório");
+		JMenu mnRelatorio = new JMenu("Relatï¿½rio");
 		mnRelatorio.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				new MostrarRelatorio().setVisible(true);
@@ -194,7 +200,7 @@ public class TelaPrincipal extends JFrame {
 		
 		menuBar.add(mnRelatorio);
 		
-		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relatório");
+		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relatï¿½rio");
 		mnItemVisRel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MostrarRelatorio().setVisible(true);
