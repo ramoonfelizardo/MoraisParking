@@ -63,11 +63,11 @@ public class RemoverVeiculo extends JFrame {
 		contentPane.add(txtPlaca);
 		txtPlaca.setColumns(10);
 		
-		JLabel lblPlaca = new JLabel("Digite a placa do veÃ­culo para remover:");
+		JLabel lblPlaca = new JLabel("Digite a placa do veículo para remover:");
 		lblPlaca.setBounds(124, 92, 201, 14);
 		contentPane.add(lblPlaca);
 		
-		lblTitulo = new JLabel("RemoÃ§Ã£o de VeÃ­culos");
+		lblTitulo = new JLabel("Remossão de veículos");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblTitulo.setBounds(118, 11, 189, 14);
@@ -88,20 +88,20 @@ public class RemoverVeiculo extends JFrame {
 					placa = txtPlaca.getText();
 				}
 				else if (txtPlaca.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "VocÃª deixou algumas informaÃ§Ãµes em branco");
+					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
 					return;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "VocÃª digitou uma placa invÃ¡lida");
+					JOptionPane.showMessageDialog(null, "Você digitou uma placa inválida");
 					return;
 				}
 				
 				if (BD.getInstance().excluirVeiculo(placa)) {
-					if (JOptionPane.showConfirmDialog(null, "VeÃ­culo removido. Deseja remover mais algum veÃ­culo?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
+					if (JOptionPane.showConfirmDialog(null, "Veículo removido. Deseja remover mais algum veículo?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
 						RemoverVeiculo.this.dispose();
 						 }
 					}
-				else if (JOptionPane.showConfirmDialog(null, "VeÃ­culo nÃ£o existe. Deseja tentar de novo?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
+				else if (JOptionPane.showConfirmDialog(null, "Veículo não existe. Deseja tentar de novo?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
 					RemoverVeiculo.this.dispose();
 				 }
 				
