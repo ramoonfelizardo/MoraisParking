@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import model.Evento;
+import persistencia.BDEstacionamento;
 import persistencia.BDEvento;
 
 import java.awt.Color;
@@ -15,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -24,6 +27,7 @@ import java.awt.event.ActionEvent;
 public class Monitorar extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -46,7 +50,7 @@ public class Monitorar extends JFrame {
 	 */
 	public Monitorar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 500);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Arial", Font.PLAIN, 11));
 		contentPane.setBackground(new Color(192, 192, 192));
@@ -58,54 +62,31 @@ public class Monitorar extends JFrame {
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 11));
 		lblNewLabel.setBounds(27, 21, 176, 14);
 		contentPane.add(lblNewLabel);
+		BDEvento.getInstance().buscarEvento(getName());
+			
+		JPanel panelShow = new JPanel();
+		panelShow.setBounds(27, 75, 176, 97);
+		contentPane.add(panelShow);
+		panelShow.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Total de vagas:\r\n");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(27, 70, 96, 14);
-		contentPane.add(lblNewLabel_1);
+		textField = new JTextField();
+		textField.setBounds(0, 0, 176, 97);
+		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Evento:");
-		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblNewLabel_2.setBounds(162, 70, 96, 14);
-		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Data In\u00EDcio:");
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblNewLabel_3.setBounds(27, 136, 96, 14);
-		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Data Final:");
-		lblNewLabel_4.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblNewLabel_4.setBounds(162, 136, 96, 14);
-		contentPane.add(lblNewLabel_4);
-		
-		JList list = new JList();
-		list.setBounds(122, 293, 262, 116);
-		contentPane.add(list);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
-		rdbtnNewRadioButton.setBackground(new Color(192, 192, 192));
-		rdbtnNewRadioButton.setBounds(110, 66, 21, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_1.setBackground(new Color(192, 192, 192));
-		rdbtnNewRadioButton_1.setBounds(218, 66, 22, 23);
-		contentPane.add(rdbtnNewRadioButton_1);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_2.setBackground(new Color(192, 192, 192));
-		rdbtnNewRadioButton_2.setBounds(110, 132, 21, 23);
-		contentPane.add(rdbtnNewRadioButton_2);
-		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_3.setBackground(new Color(192, 192, 192));
-		rdbtnNewRadioButton_3.setBounds(218, 132, 21, 23);
-		contentPane.add(rdbtnNewRadioButton_3);
 		
 		JButton btnConsultar = new JButton("Consultar\r\n");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 	
+			BDEvento.getInstance().buscarEvento(getName());
+			
+			}
+		});
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnConsultar.setBounds(296, 242, 89, 23);
+		btnConsultar.setBounds(305, 28, 89, 23);
 		contentPane.add(btnConsultar);
+		
+	
+	
 	}
 }

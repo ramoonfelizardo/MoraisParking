@@ -148,7 +148,7 @@ public class CadastrarEvento extends JFrame {
 		lblNewLabel_1.setBounds(161, 67, 109, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Data de InÃ­cio DD/MM/AA: ");
+		JLabel lblNewLabel_2 = new JLabel("Data de Início DD/MM/AA: ");
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(142, 126, 150, 13);
