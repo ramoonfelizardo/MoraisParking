@@ -28,6 +28,7 @@ public class Monitorar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField txtShow;
 
 	/**
 	 * Launch the application.
@@ -68,6 +69,11 @@ public class Monitorar extends JFrame {
 		panelShow.setBounds(27, 75, 176, 97);
 		contentPane.add(panelShow);
 		panelShow.setLayout(null);
+		
+		txtShow = new JTextField();
+		txtShow.setBounds(0, 0, 176, 97);
+		panelShow.add(txtShow);
+		txtShow.setColumns(10);
 		
 		textField = new JTextField();
 		textField.setBounds(0, 0, 176, 97);
