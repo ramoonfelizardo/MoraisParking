@@ -22,13 +22,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class Monitorar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField txtShow;
 
 	/**
 	 * Launch the application.
@@ -48,8 +51,9 @@ public class Monitorar extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public Monitorar() {
+	public Monitorar() throws ParseException {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,21 +63,43 @@ public class Monitorar extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Monitoramento de vagas");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel.setBounds(27, 21, 176, 14);
-		contentPane.add(lblNewLabel);
+		JLabel lblNewLabelM = new JLabel("Monitoramento de vagas");
+		lblNewLabelM.setFont(new Font("Arial", Font.BOLD, 11));
+		lblNewLabelM.setBounds(27, 21, 176, 14);
+		contentPane.add(lblNewLabelM);
 		BDEvento.getInstance().buscarEvento(getName());
-			
-		JPanel panelShow = new JPanel();
-		panelShow.setBounds(27, 75, 176, 97);
-		contentPane.add(panelShow);
-		panelShow.setLayout(null);
 		
-		txtShow = new JTextField();
-		txtShow.setBounds(0, 0, 176, 97);
-		panelShow.add(txtShow);
-		txtShow.setColumns(10);
+		JLabel lblVaga = new JLabel("");
+		lblVaga.setOpaque(true);
+		lblVaga.setForeground(new Color(0, 0, 0));
+		lblVaga.setFont(new Font("Arial", Font.BOLD, 11));
+		lblVaga.setBackground(SystemColor.menu);
+		lblVaga.setBounds(27, 85, 136, 23);
+		contentPane.add(lblVaga);
+		
+		JLabel labelZona = new JLabel("");
+		labelZona.setOpaque(true);
+		labelZona.setForeground(Color.BLACK);
+		labelZona.setFont(new Font("Arial", Font.BOLD, 11));
+		labelZona.setBackground(SystemColor.menu);
+		labelZona.setBounds(27, 130, 136, 23);
+		contentPane.add(labelZona);
+		
+		JLabel labelVagasEsp = new JLabel("");
+		labelVagasEsp.setOpaque(true);
+		labelVagasEsp.setForeground(Color.BLACK);
+		labelVagasEsp.setFont(new Font("Arial", Font.BOLD, 11));
+		labelVagasEsp.setBackground(SystemColor.menu);
+		labelVagasEsp.setBounds(27, 173, 136, 23);
+		contentPane.add(labelVagasEsp);
+		
+		JLabel labelEvento = new JLabel("");
+		labelEvento.setFont(new Font("Arial", Font.BOLD, 11));
+		labelEvento.setOpaque(true);
+		labelEvento.setBounds(274, 85, 120, 23);
+		contentPane.add(labelEvento);
+		
+	
 		
 		
 		
@@ -81,13 +107,63 @@ public class Monitorar extends JFrame {
 		JButton btnConsultar = new JButton("Consultar\r\n");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 	
-			BDEvento.getInstance().buscarEvento(getName());
-				txtShow.setText(getName());
+				try {
+					lblVaga.setText("Vagas: " + BDEstacionamento.getInstance().getQtdVagas().toString());
+				} catch (ParseException e1) {
+				
+					e1.printStackTrace();
+				}
+				
+				try {
+					labelZona.setText("Área Evento: " + BDEstacionamento.getInstance().getQtdZonaEvento().toString());
+				} catch (ParseException e1) {
+				
+					e1.printStackTrace();
+				}
+				
+				try {
+					labelVagasEsp.setText("Vagas Especiais: " + BDEstacionamento.getInstance().getQtdVagasEspeciais().toString());
+				} catch (ParseException e1) {
+			
+					e1.printStackTrace();
+				}
+			
+			
 			}
 		});
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnConsultar.setBounds(305, 28, 89, 23);
+		btnConsultar.setBounds(27, 46, 89, 23);
 		contentPane.add(btnConsultar);
+		
+		JLabel label1 = new JLabel("Monitoramento de Evento");
+		label1.setFont(new Font("Arial", Font.BOLD, 11));
+		label1.setBounds(248, 21, 176, 14);
+		contentPane.add(label1);
+		
+		JButton buttonEvento = new JButton("Consultar\r\n");
+		buttonEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				Date dataDeHoje = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+				Evento evento = null;
+				try {
+					evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
+				} catch (ParseException e1) {
+				
+					e1.printStackTrace();
+				}
+			
+			
+			
+			}
+		});
+		buttonEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
+		buttonEvento.setBounds(305, 46, 89, 23);
+		contentPane.add(buttonEvento);
+		
+		
+		
 		
 	
 	

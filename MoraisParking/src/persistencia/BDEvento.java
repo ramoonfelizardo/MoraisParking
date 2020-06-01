@@ -67,6 +67,20 @@ public class BDEvento {
 		}
 		
 	}
+			
+	
+	public Evento RetornaEventoPelaDataInicio(String data) throws ParseException {
+		
+		for (Evento evento : eventos) {
+			if (evento.getDataInicio().equals(sdf.parse(data))){
+				return evento;
+			}
+		}
+		return null;
+	}
+	
+	
+	
 	
 	public Evento buscarEvento(String nome) {
 		for (Evento evento : eventos) {
