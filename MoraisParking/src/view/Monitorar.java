@@ -75,9 +75,6 @@ public class Monitorar extends JFrame {
 		panelShow.add(txtShow);
 		txtShow.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(0, 0, 176, 97);
-		textField.setColumns(10);
 		
 		
 		
@@ -85,7 +82,7 @@ public class Monitorar extends JFrame {
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 	
 			BDEvento.getInstance().buscarEvento(getName());
-			
+				txtShow.setText(getName());
 			}
 		});
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
