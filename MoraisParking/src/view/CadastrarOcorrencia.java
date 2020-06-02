@@ -261,6 +261,7 @@ public class CadastrarOcorrencia extends JFrame {
 					if(JOptionPane.showConfirmDialog(null, "Deseja cadastrar agora?", "Confirm", JOptionPane.YES_NO_OPTION) == 0) {
 						
 						listaDeVeiculosNaoCadastrados.clear();
+						dm.clear();
 						CadastrarVeiculo cadastrarVeiculo = new CadastrarVeiculo();
 						cadastrarVeiculo.setVisible(true);
 					}
