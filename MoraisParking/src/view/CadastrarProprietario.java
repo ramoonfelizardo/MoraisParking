@@ -105,7 +105,7 @@ public class CadastrarProprietario {
 		frame.getContentPane().add(textField_1Curso);
 		textField_1Curso.setColumns(10);
 
-		JLabel lblNewLabel_3Matricula = new JLabel("Matr\u00EDcula");
+		JLabel lblNewLabel_3Matricula = new JLabel("Matrícula");
 		lblNewLabel_3Matricula.setBounds(10, 166, 62, 14);
 		frame.getContentPane().add(lblNewLabel_3Matricula);
 
@@ -137,7 +137,7 @@ public class CadastrarProprietario {
 		rdbtnNewRadioButton_1NAO.setBounds(164, 218, 59, 23);
 		frame.getContentPane().add(rdbtnNewRadioButton_1NAO);
 
-		JLabel lblNewLabel_4AreaEspecial = new JLabel("Area especial");
+		JLabel lblNewLabel_4AreaEspecial = new JLabel("Área especial");
 		lblNewLabel_4AreaEspecial.setBounds(10, 222, 84, 14);
 		frame.getContentPane().add(lblNewLabel_4AreaEspecial);
 

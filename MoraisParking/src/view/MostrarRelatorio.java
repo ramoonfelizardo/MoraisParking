@@ -59,7 +59,7 @@ public class MostrarRelatorio extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnRelatrioEvento = new JButton("Relat髍io Evento");
+		JButton btnRelatrioEvento = new JButton("Relat贸rio Evento");
 		btnRelatrioEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -73,7 +73,7 @@ public class MostrarRelatorio extends JFrame {
 		btnRelatrioEvento.setBounds(59, 32, 147, 30);
 		contentPane.add(btnRelatrioEvento);
 		
-		JButton btnRelatrioOcorrncia = new JButton("Relat髍io Ocorr阯cia");
+		JButton btnRelatrioOcorrncia = new JButton("Relat贸rio Ocorr锚ncia");
 		btnRelatrioOcorrncia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ocorrencia oco = new Ocorrencia(null, null, null);
@@ -93,7 +93,7 @@ public class MostrarRelatorio extends JFrame {
 		btnRelatrioOcorrncia.setBounds(59, 73, 147, 30);
 		contentPane.add(btnRelatrioOcorrncia);
 		
-		JButton btnRelatrioVeiculo = new JButton("Relat\u00F3rio Ve\u00EDculo\r\n");
+		JButton btnRelatrioVeiculo = new JButton("Relat贸rio Ve铆culo");
 		btnRelatrioVeiculo.setForeground(Color.BLACK);
 		btnRelatrioVeiculo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRelatrioVeiculo.setBorder(null);
@@ -102,7 +102,7 @@ public class MostrarRelatorio extends JFrame {
 		btnRelatrioVeiculo.setBounds(59, 114, 147, 30);
 		contentPane.add(btnRelatrioVeiculo);
 		
-		JButton btnRelatrioFuncionrio = new JButton("Relat\u00F3rio Funcion\u00E1rio");
+		JButton btnRelatrioFuncionrio = new JButton("Relat贸rio Funcion谩rio");
 		btnRelatrioFuncionrio.setForeground(Color.BLACK);
 		btnRelatrioFuncionrio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRelatrioFuncionrio.setBorder(null);

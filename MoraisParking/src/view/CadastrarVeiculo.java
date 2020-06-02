@@ -172,7 +172,7 @@ public class CadastrarVeiculo extends JFrame {
 				if (proprietario != null) {
 					Veiculo veiculoNovo = new Veiculo(placa, tipoDeVeiculo, proprietario);
 					BD.getInstance().salvarVeiculo(veiculoNovo);
-					if(JOptionPane.showConfirmDialog(null, "Veículo cadastrado, você deseja cadastrar mais algum?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
+					if(JOptionPane.showConfirmDialog(null, "Veículo cadastrado, você deseja cadastrar outro?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
 						CadastrarVeiculo.this.dispose();
 					}
 					else {

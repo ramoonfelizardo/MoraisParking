@@ -139,6 +139,18 @@ public class Monitorar extends JFrame {
 		label1.setBounds(248, 21, 176, 14);
 		contentPane.add(label1);
 		
+		JLabel labelDataIni = new JLabel("");
+		labelDataIni.setOpaque(true);
+		labelDataIni.setFont(new Font("Arial", Font.BOLD, 11));
+		labelDataIni.setBounds(274, 130, 120, 23);
+		contentPane.add(labelDataIni);
+		
+		JLabel labelDataFin = new JLabel("");
+		labelDataFin.setOpaque(true);
+		labelDataFin.setFont(new Font("Arial", Font.BOLD, 11));
+		labelDataFin.setBounds(274, 173, 120, 23);
+		contentPane.add(labelDataFin);
+		
 		JButton buttonEvento = new JButton("Consultar\r\n");
 		buttonEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,19 +166,53 @@ public class Monitorar extends JFrame {
 						labelEvento.setText("");
 					}
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
+			
+			
+				try {
+					Evento evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
+					if (evento != null) {
+						labelDataIni.setText(evento.getDataInicio().toGMTString());
+					}
+					else {
+						labelDataIni.setText("");
+					}
+				
+				} catch (ParseException e1) {
+
+					e1.printStackTrace();
+				}
+			
+			
+				try {
+					Evento evento = BDEvento.getInstance().buscarEventoPelaDataFinal(sdf.format(dataDeHoje));
+					if (evento != null) {
+						labelDataFin.setText(evento.getDataFinal().toGMTString());
+					}
+					else {
+						labelDataFin.setText("");
+					}
+				} 
+				
+				
+				catch (ParseException e1) {
+				
+					e1.printStackTrace();
+				}
+			
+			
+			
+			
+			
+			
 			}
 		});
 		buttonEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonEvento.setBounds(305, 46, 89, 23);
 		contentPane.add(buttonEvento);
 		
-		
-		
-		
-	
 	
 	}
 }

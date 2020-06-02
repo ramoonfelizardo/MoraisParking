@@ -90,7 +90,7 @@ public class CadastrarOcorrencia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblInsiraOsDados = new JLabel("Insira os dados da ocorrência");
+		JLabel lblInsiraOsDados = new JLabel("Insira os dados da ocorrrÃªncia");
 		lblInsiraOsDados.setBounds(10, 11, 182, 14);
 		lblInsiraOsDados.setFont(new Font("Arial", Font.BOLD, 12));
 		contentPane.add(lblInsiraOsDados);
@@ -109,13 +109,13 @@ public class CadastrarOcorrencia extends JFrame {
 		lblNewLabel.setBounds(10, 52, 118, 28);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblDescrio = new JLabel("Descrição:");
+		JLabel lblDescrio = new JLabel("DescriÃ§Ã£o:");
 		lblDescrio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescrio.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblDescrio.setBounds(10, 101, 76, 14);
 		contentPane.add(lblDescrio);
 		
-		JLabel lblVeculo = new JLabel("Veículo:");
+		JLabel lblVeculo = new JLabel("VeÃ­culo:");
 		lblVeculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVeculo.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblVeculo.setBounds(10, 148, 76, 14);
@@ -154,12 +154,12 @@ public class CadastrarOcorrencia extends JFrame {
 				}
 				else if (txtVeiculo.getText().isEmpty()) {
 					
-					JOptionPane.showMessageDialog(null, "Nenhum veículo digitado");
+					JOptionPane.showMessageDialog(null, "Nenhum veÃ­culo digitado");
 					return;
 				}
 				else {
 					
-					JOptionPane.showMessageDialog(null, "Você digitou uma placa inválida");
+					JOptionPane.showMessageDialog(null, "VocÃª digitou uma placa invÃ¡lida");
 					return;
 				}
 			}
@@ -211,7 +211,7 @@ public class CadastrarOcorrencia extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (dm.isEmpty() || txtDescricao.getText().equals("") || formattedTxtData.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Você deixou algumas informações em branco");
+					JOptionPane.showMessageDialog(null, "VocÃª deixou algumas informaÃ§Ãµes em branco");
 					return;
 				}
 				
@@ -245,17 +245,17 @@ public class CadastrarOcorrencia extends JFrame {
 					}
 				}
 				
-				// ------- se a lista conter algo, ele mostra todos os nomes que não estão cadastrados nos sistema
+				// ------- se a lista conter algo, ele mostra todos os nomes que nï¿½o estï¿½o cadastrados nos sistema
 
 				if (listaDeVeiculosNaoCadastrados.isEmpty()) {
 					
 					Ocorrencia ocorrencia = new Ocorrencia(data, descricao, veiculos);
 					BDOcorrencia.getInstance().salvarOcorrencia(ocorrencia);
-					JOptionPane.showMessageDialog(null, "Ocorrência cadastrada!");
+					JOptionPane.showMessageDialog(null, "OcorrÃªncia cadastrada!");
 					CadastrarOcorrencia.this.dispose();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Veículos não cadastrados: " + listaDeVeiculosNaoCadastrados);
+					JOptionPane.showMessageDialog(null, "VeÃ­culos nÃ£o cadastrados: " + listaDeVeiculosNaoCadastrados);
 					
 					if(JOptionPane.showConfirmDialog(null, "Deseja cadastrar agora?", "Confirm", JOptionPane.YES_NO_OPTION) == 0) {
 						
@@ -264,7 +264,7 @@ public class CadastrarOcorrencia extends JFrame {
 						cadastrarVeiculo.setVisible(true);
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "Ocorrência não salva por falta de informações!");
+						JOptionPane.showMessageDialog(null, "OcorrÃªncia nÃ£o salva por falta de informaÃ§Ãµes!");
 						CadastrarOcorrencia.this.dispose();
 					}
 				}
@@ -279,7 +279,7 @@ public class CadastrarOcorrencia extends JFrame {
 		txtVeiculo.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent e) {
 				
-				if (txtVeiculo.getText().equals("Veículo")) {
+				if (txtVeiculo.getText().equals("VeÃ­culo")) {
 					txtVeiculo.setText("");
 				}
 				else {
@@ -297,7 +297,7 @@ public class CadastrarOcorrencia extends JFrame {
 		contentPane.add(txtDescricao);
 		txtDescricao.addFocusListener(new FocusAdapter() {
 			public void focusGained(FocusEvent e) {
-				if (txtDescricao.getText().equals("Descrição")) {
+				if (txtDescricao.getText().equals("DescriÃ§Ã£o")) {
 					txtDescricao.setText("");
 					}
 				else {

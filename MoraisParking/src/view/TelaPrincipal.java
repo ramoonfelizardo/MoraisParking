@@ -57,7 +57,7 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnNew = new JMenu("Cadastrar");
 		mnEstac.add(mnNew);
 		
-		JMenuItem mnItemCadUsuario = new JMenuItem("Usu�rio");
+		JMenuItem mnItemCadUsuario = new JMenuItem("Usuário");
 		mnItemCadUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -70,7 +70,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadUsuario);
 		
-		JMenuItem mnItemCadVeic = new JMenuItem("Ve�culo");
+		JMenuItem mnItemCadVeic = new JMenuItem("Veículo");
 		mnItemCadVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -97,7 +97,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadEven);
 		
-		JMenuItem mnItemCadOc = new JMenuItem("Ocorr�ncia");
+		JMenuItem mnItemCadOc = new JMenuItem("Ocorrência");
 		mnItemCadOc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -112,7 +112,7 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNew.add(mnItemCadOc);
 		
-		JMenuItem mnItemCadArEsp = new JMenuItem("�rea Especial");
+		JMenuItem mnItemCadArEsp = new JMenuItem("Área Especial");
 		mnItemCadArEsp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
@@ -126,7 +126,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNew.add(mnItemCadArEsp);
 		
-		JMenuItem mnItemRemVeic = new JMenuItem("Remover Ve�culo");
+		JMenuItem mnItemRemVeic = new JMenuItem("Remover Veículo");
 		mnItemRemVeic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
@@ -139,7 +139,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnEstac.add(mnItemRemVeic);
 		
-		JMenuItem mnItemPermissoes = new JMenuItem("Permiss�es");
+		JMenuItem mnItemPermissoes = new JMenuItem("Permissões");
 		mnItemPermissoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada)) {
@@ -173,10 +173,10 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNewMenu.add(mnItemMonitorar);
 		
-		JMenu mnNewMenu_1 = new JMenu("Gest�o");
+		JMenu mnNewMenu_1 = new JMenu("Gestor");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcion�rio");
+		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcionário");
 		mnItemCadFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -190,7 +190,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNewMenu_1.add(mnItemCadFunc);
 		
-		JMenu mnRelatorio = new JMenu("Relat�rio");
+		JMenu mnRelatorio = new JMenu("Relatório");
 		mnRelatorio.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				new MostrarRelatorio().setVisible(true);
@@ -200,7 +200,7 @@ public class TelaPrincipal extends JFrame {
 		
 		menuBar.add(mnRelatorio);
 		
-		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relat�rio");
+		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relatório");
 		mnItemVisRel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MostrarRelatorio().setVisible(true);
