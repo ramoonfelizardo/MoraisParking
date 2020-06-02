@@ -190,27 +190,6 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnNewMenu_1.add(mnItemCadFunc);
 		
-		JMenu mnRelatorio = new JMenu("Relatório");
-		mnRelatorio.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				new MostrarRelatorio().setVisible(true);
-				
-			}});
-		
-		
-		menuBar.add(mnRelatorio);
-		
-		JMenuItem mnItemVisRel = new JMenuItem("Visualizar Relatório");
-		mnItemVisRel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MostrarRelatorio().setVisible(true);
-				
-			}
-		});
-		
-		
-		mnRelatorio.add(mnItemVisRel);
-		
 		JLayeredPane layeredPane = new JLayeredPane();
 		getContentPane().add(layeredPane, BorderLayout.CENTER);
 		
@@ -220,7 +199,7 @@ public class TelaPrincipal extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblImgMorais =  new JLabel("");
-		lblImgMorais.setIcon(new ImageIcon("C:\\Users\\Ramon\\Documents\\Atividades Java\\Logos Morais Parking\\Logo Morais Parking.png"));
+		lblImgMorais.setIcon(new ImageIcon("C:\\img\\Logo Morais Parking.png"));
 		lblImgMorais.setBounds(209, 71, 216, 147);
 		panel.add(lblImgMorais);
 		

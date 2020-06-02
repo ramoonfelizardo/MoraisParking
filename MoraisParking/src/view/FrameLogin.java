@@ -96,7 +96,7 @@ public class FrameLogin extends JFrame {
 		
 		JLabel lblUserloginIcon = new JLabel("");
 		lblUserloginIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserloginIcon.setIcon(new ImageIcon("C:\\Users\\Usu\u00E1rio\\Downloads\\avatar (2).png"));
+		lblUserloginIcon.setIcon(new ImageIcon("C:\\img\\avatar (2).png"));
 		lblUserloginIcon.setBounds(201, 0, 30, 37);
 		UserNamePanel.add(lblUserloginIcon);
 		
@@ -125,7 +125,7 @@ public class FrameLogin extends JFrame {
 		
 		JLabel lblPsswdLoginIcon = new JLabel("");
 		lblPsswdLoginIcon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPsswdLoginIcon.setIcon(new ImageIcon("C:\\Users\\Usu\u00E1rio\\Downloads\\keyhole.png"));
+		lblPsswdLoginIcon.setIcon(new ImageIcon("C:\\img\\keyhole.png"));
 		lblPsswdLoginIcon.setBounds(200, 0, 31, 37);
 		PasswordPanel.add(lblPsswdLoginIcon);
 		
@@ -151,7 +151,7 @@ public class FrameLogin extends JFrame {
 				}
 				
 				else {
-					lblLoginMessage.setText("Usuário e senha incorreto!");
+					lblLoginMessage.setText("Usuï¿½rio e senha incorreto!");
 				}
 			}
 			@Override
@@ -209,7 +209,7 @@ public class FrameLogin extends JFrame {
 		
 		JLabel lblIconLogo = new JLabel("");
 		lblIconLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIconLogo.setIcon(new ImageIcon("C:\\Users\\Usu\u00E1rio\\Downloads\\computer.png"));
+		lblIconLogo.setIcon(new ImageIcon("C:\\img\\computer.png"));
 		lblIconLogo.setBounds(26, 29, 535, 105);
 		panelPrincipal.add(lblIconLogo);
 		

@@ -33,11 +33,11 @@ public class BDOcorrencia {
 
 	
 	
-	public void escrever(Ocorrencia ocorrencia){
+	public void escrever(String string){
 		try {
-			File file = new File ("RelatórioOcorrencia.txt");
+			File file = new File ("Relatï¿½rioOcorrencia.txt");
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
-			output.writeObject(ocorrencia);
+			output.writeObject(string);
 		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);

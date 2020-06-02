@@ -117,7 +117,6 @@ public class CadastrarEvento extends JFrame {
 				
 				Evento eventoNovo = new Evento(evento, dataInicio, dataFinal);
 				BDEvento.getInstance().salvarEvento(eventoNovo);
-				BDEvento.getInstance().escrever(eventoNovo);
 				JOptionPane.showMessageDialog(null, "Evento Cadastrado");
 				CadastrarEvento.this.dispose();
 			
