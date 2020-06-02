@@ -36,7 +36,7 @@ public class BDFuncionario {
 	
 	public Funcionario buscarFuncionario(String Nome) {
 		for (Funcionario funcionario : funcionarios) {
-			if (funcionario.getNome() == Nome) {
+			if (funcionario.getNome().equals(Nome)) {
 				return funcionario;
 			}
 		}

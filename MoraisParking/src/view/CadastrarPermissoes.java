@@ -42,7 +42,7 @@ public class CadastrarPermissoes extends JFrame {
 	}
 	
 	public CadastrarPermissoes() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,7 +50,7 @@ public class CadastrarPermissoes extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Digite o nome do Funcionário:");
-		lblNome.setBounds(10, 81, 165, 14);
+		lblNome.setBounds(10, 81, 194, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblTitulo = new JLabel("Cadastro de permissão para Área Especial");
@@ -90,7 +90,7 @@ public class CadastrarPermissoes extends JFrame {
 		contentPane.add(rdbtnEspecialNao);
 		
 		JLabel lblPermissao = new JLabel("Permitir acessar áreas especiais:");
-		lblPermissao.setBounds(10, 145, 181, 14);
+		lblPermissao.setBounds(10, 145, 212, 14);
 		contentPane.add(lblPermissao);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -126,7 +126,7 @@ public class CadastrarPermissoes extends JFrame {
 				func = BDFuncionario.getInstance().buscarFuncionario(nome);
 				
 				if (func == null) {
-					if(JOptionPane.showConfirmDialog(null, "Funcionário não cadastrado, você desejar cadastrar?", "Confirm", JOptionPane.YES_NO_OPTION) != 0) {
+					if(JOptionPane.showConfirmDialog(null, "Funcionário não cadastrado, você desejar cadastrar?", "Confirm", JOptionPane.YES_NO_OPTION) == 0) {
 						CadastrarFuncionario cadastrarFunc = new CadastrarFuncionario();
 						cadastrarFunc.setVisible(true);
 					}
@@ -137,10 +137,13 @@ public class CadastrarPermissoes extends JFrame {
 				else {
 					func.setEspecial(especial);
 					BDFuncionario.getInstance().salvarFuncionario(func);
+					JOptionPane.showMessageDialog(null, "Permissão Atualizada!");
+					CadastrarPermissoes.this.dispose();
+					
 				}
 			}
 		});
-		btnCadastrar.setBounds(169, 216, 89, 23);
+		btnCadastrar.setBounds(169, 216, 109, 23);
 		contentPane.add(btnCadastrar);
 	}
 }

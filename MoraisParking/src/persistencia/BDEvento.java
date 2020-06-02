@@ -54,7 +54,7 @@ public class BDEvento {
 	
 	public void escrever(Evento evento){
 		try {
-			File file = new File ("RelatórioEvento.txt");
+			File file = new File ("Relatï¿½rioEvento.txt");
 			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
 			for (Evento evento2 : eventos) {
 				output.writeObject(evento.toString());
@@ -78,7 +78,6 @@ public class BDEvento {
 		}
 		return null;
 	}
-	
 	
 	
 	

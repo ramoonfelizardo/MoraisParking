@@ -86,7 +86,7 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemCadEven = new JMenuItem("Evento");
 		 mnItemCadEven.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
+				if(BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada) || BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
 					new CadastrarEvento().setVisible(true);
 				}
 				else {
@@ -158,13 +158,16 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mnItemMonitorar = new JMenuItem("Monitorar");
 		mnItemMonitorar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					new Monitorar().setVisible(true);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada) || BDCredencial.getInstance().verificacaoEstac(loginDigitado, senhaDigitada)) {
+					try {
+						new Monitorar().setVisible(true);
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
 				}
-				
+				else {
+					JOptionPane.showMessageDialog(null, "Acesso Negado");
+				}
 			}
 		});
 		
@@ -173,14 +176,14 @@ public class TelaPrincipal extends JFrame {
 		
 		mnNewMenu.add(mnItemMonitorar);
 		
-		JMenu mnNewMenu_1 = new JMenu("Gestor");
+		JMenu mnNewMenu_1 = new JMenu("Recursos Humanos");
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mnItemCadFunc = new JMenuItem("Cadastrar Funcionário");
 		mnItemCadFunc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (BDCredencial.getInstance().verificacaoGestor(loginDigitado, senhaDigitada)) {
+				if (BDCredencial.getInstance().verificacaoRH(loginDigitado, senhaDigitada)) {
 					new CadastrarFuncionario().setVisible(true);
 				}
 				else {

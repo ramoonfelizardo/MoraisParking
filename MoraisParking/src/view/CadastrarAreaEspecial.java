@@ -74,7 +74,7 @@ public class CadastrarAreaEspecial extends JFrame {
 		contentPane.add(lblTitulo);
 		
 		JLabel lblQntdVagasEspeciais = new JLabel("Informe a quantidade de vagas especiais que você deseja:");
-		lblQntdVagasEspeciais.setBounds(10, 62, 322, 14);
+		lblQntdVagasEspeciais.setBounds(10, 62, 347, 14);
 		contentPane.add(lblQntdVagasEspeciais);
 		
 		txtQntdVagasEspeciais = new JTextField();
@@ -145,7 +145,7 @@ public class CadastrarAreaEspecial extends JFrame {
 		contentPane.add(list);
 		
 		JLabel lblUsuariosPermissoes = new JLabel("Digite os nomes dos usuários que você deseja permitir acesso:");
-		lblUsuariosPermissoes.setBounds(10, 118, 334, 14);
+		lblUsuariosPermissoes.setBounds(10, 118, 372, 14);
 		contentPane.add(lblUsuariosPermissoes);
 		
 		JButton btnAdicionar = new JButton("Adicionar");

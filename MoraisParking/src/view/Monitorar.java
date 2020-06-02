@@ -161,6 +161,8 @@ public class Monitorar extends JFrame {
 					Evento evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
 					if (evento != null) {
 						labelEvento.setText(evento.getNome());
+						labelDataIni.setText(sdf.format(evento.getDataInicio()));
+						labelDataFin.setText(sdf.format(evento.getDataFinal()));
 					}
 					else {
 						labelEvento.setText("");
@@ -170,48 +172,23 @@ public class Monitorar extends JFrame {
 					e1.printStackTrace();
 				}
 			
-			
-				try {
-					Evento evento = BDEvento.getInstance().RetornaEventoPelaDataInicio(sdf.format(dataDeHoje));
-					if (evento != null) {
-						labelDataIni.setText(evento.getDataInicio().toGMTString());
-					}
-					else {
-						labelDataIni.setText("");
-					}
-				
-				} catch (ParseException e1) {
-
-					e1.printStackTrace();
-				}
-			
-			
-				try {
-					Evento evento = BDEvento.getInstance().buscarEventoPelaDataFinal(sdf.format(dataDeHoje));
-					if (evento != null) {
-						labelDataFin.setText(evento.getDataFinal().toGMTString());
-					}
-					else {
-						labelDataFin.setText("");
-					}
-				} 
-				
-				
-				catch (ParseException e1) {
-				
-					e1.printStackTrace();
-				}
-			
-			
-			
-			
-			
-			
 			}
 		});
 		buttonEvento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		buttonEvento.setBounds(305, 46, 89, 23);
 		contentPane.add(buttonEvento);
+		
+		JLabel lblNewLabel = new JLabel("Início:");
+		lblNewLabel.setBounds(227, 135, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Fim:");
+		lblNewLabel_1.setBounds(227, 177, 46, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Nome:");
+		lblNewLabel_2.setBounds(227, 90, 46, 14);
+		contentPane.add(lblNewLabel_2);
 		
 	
 	}

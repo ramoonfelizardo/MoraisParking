@@ -75,7 +75,7 @@ public class CadastrarFuncionario extends JFrame {
 		lblCargo.setBounds(10, 104, 83, 14);
 		contentPane.add(lblCargo);
 		
-		JLabel lblEspecial = new JLabel("Permitir acessar �reas especiais:");
+		JLabel lblEspecial = new JLabel("Permitir acessar Áreas especiais:");
 		lblEspecial.setBounds(10, 152, 209, 14);
 		contentPane.add(lblEspecial);
 		
@@ -153,7 +153,7 @@ public class CadastrarFuncionario extends JFrame {
 				}
 				
 				Funcionario funcionario = new Funcionario(nome, cargo);
-				//funcionario.setEspecial(especial);
+				funcionario.setEspecial(especial);
 				
 				BDFuncionario.getInstance().salvarFuncionario(funcionario);
 				
@@ -172,7 +172,7 @@ public class CadastrarFuncionario extends JFrame {
 				rdbtnEspecialSim.setSelected(false);
 			}
 		});
-		btnCadastrarFuncionario.setBounds(177, 216, 98, 23);
+		btnCadastrarFuncionario.setBounds(177, 216, 109, 23);
 		contentPane.add(btnCadastrarFuncionario);
 	}
 }
