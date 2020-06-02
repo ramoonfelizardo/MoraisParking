@@ -122,7 +122,6 @@ public class CadastrarAreaEspecial extends JFrame {
 				// ------- se a lista conter algo, ele mostra todos os nomes que não estão cadastrados nos sistema
 				
 				if (listaDeUsuariosNaoCadastrados.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
 					CadastrarAreaEspecial.this.dispose();
 				}
 				else {
